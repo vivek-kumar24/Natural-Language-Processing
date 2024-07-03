@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jun 30 19:23:46 2024
-
-@author: Vivek
-"""
+#Solving lexical complexity problem usimg machine learning
+#nlp task one
 
 import pandas as pd
 import numpy as np
@@ -16,7 +12,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 import matplotlib.pyplot as plt
 
-# Load datasets
+# Loading datasets
 train_data = pd.read_csv(r"C:\Users\Vivek\Documents\lcp_single_train.tsv", sep='\t') 
 test_data = pd.read_csv(r"C:\Users\Vivek\Downloads\lcp_single_test.tsv", sep='\t')
 
@@ -30,16 +26,16 @@ def discretize_complexity(df, n_bins=5, strategy='uniform'):
 train_data = discretize_complexity(train_data)
 test_data = discretize_complexity(test_data)
 
-# Vectorize the 'sentence' column
+# Vectorizing the 'sentence' column using tfidf vectorizer
 vectorizer = TfidfVectorizer()
 X_train = vectorizer.fit_transform(train_data['sentence'])
 X_test = vectorizer.transform(test_data['sentence'])
 
-# Extract labels
+# Extract the labels
 y_train = train_data['complexity_discrete']
 y_test = test_data['complexity_discrete']
 
-# Train classifiers
+# Training classifiers
 models = {
     'Random Forest': RandomForestClassifier(),
     'Decision Tree': DecisionTreeClassifier(),
